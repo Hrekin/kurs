@@ -1,0 +1,22 @@
+%p#notice= notice
+
+
+%dl
+  %bt= Payment.human_attribute_name(:client_id)
+  %dd= @payment.client_id
+%dl
+  %bt= Payment.human_attribute_name(:service_type)
+  %dd= @payment.service_type
+%dl
+  %bt= Payment.human_attribute_name(:price)
+  %dd= @payment.price
+%dl
+  %bt= Payment.human_attribute_name(:payment_time)
+  %dd= @payment.payment_time
+%dl
+  %bt= Payment.human_attribute_name(:validity_service)
+  %dd= @payment.validity_service
+
+= link_to t('app.payments.edit'), edit_payment_path(@payment)
+\|
+= link_to  t('helpers.submit.back'), payments_path

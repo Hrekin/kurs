@@ -1,0 +1,6 @@
+%h1= t('app.payments.edit')
+= render 'form'
+
+= link_to t('app.payments.show'), @payment
+\|
+= link_to t('helpers.submit.back'), payments_path

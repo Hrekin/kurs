@@ -1,0 +1,6 @@
+%h1= t('app.clients.edit')
+= render 'form'
+
+= link_to   t('app.clients.show'), @client
+\|
+= link_to t('helpers.submit.back'), clients_path

@@ -1,0 +1,7 @@
+%h1= t('app.worksheets.edit')
+
+= render 'form'
+
+= link_to t('app.worksheets.show'), @worksheet
+\|
+= link_to t('helpers.submit.back'), worksheets_path

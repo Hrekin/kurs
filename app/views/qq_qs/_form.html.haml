@@ -1,0 +1,13 @@
+= form_for @qqq do |f|
+  - if @qqq.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@qqq.errors.count, "error")} prohibited this qqq from being saved:"
+      %ul
+        - @qqq.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :qq
+    = f.text_field :qq
+  .actions
+    = f.submit 'Save'

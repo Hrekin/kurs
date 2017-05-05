@@ -4,11 +4,44 @@ ru:
     company:
       short_name: МПУ
       department: Кафедра
+    users:
+      index: Список пользователей
+      new-button: Новый пользователь 
+      edit: Редактирование пользователя
+      new: Создание пользователя
+    roles:
+      index: Список возможных ролей пользователей
+      new-button: Новая роль
+      edit: Редактирование роли
+      new: Создание роли
+    clients:
+      index: Список клиентов
+      new-button: Новый клиент 
+      edit: Редактировать
+      new: Создание клиента
+      destroy: Удалить
+      show: Показать 
+    worksheets:
+      index: Список анкет
+      new-button: Новая анкета
+      edit: Редактировать анкету
+      new: Создание анкеты
+      destroy: Удалить анкету
+      show: Показать анкету
+    payments:
+      index: Список опаченных услуг
+      new-button: Новая оплата услуг
+      edit: Редактирование оплаты услуг
+      new: Создание оплаты услуг
+      destroy: Удалить оплату услуг
+      show: Показать оплату услуг
   helpers:
     submit:
+      back: Назад
       create: Сохранить
       submit: Сохранить
       update: Сохранить
+    sure: Действительно удалить?      
   buttons:
     edit: Редактировать
     destroy: Удалить
@@ -16,6 +49,9 @@ ru:
     confirm:
       user: Действительно удалить пользователя?
       role: Действительно удалить роль?
+      client: Действительно удалить клиента?
+      worksheet: Действительно удалить анкету?
+      payment: Действительно удалить оплату?
     new: 
       user: Новый пользователь
       role: Новая роль
@@ -38,6 +74,9 @@ ru:
   activerecord:
     models:
       user: Пользователь
+      client: Клиент
+      worksheet: Анкета клиента
+      payment: Оплата услуг
     attributes:
       user:
         email: Пользовательское имя/электронная почта
@@ -53,4 +92,35 @@ ru:
         name: Обозначение
         info: Краткое название
         full_info: Описание
+      client:
+        client_login: Логин
+        client_password: Пароль
+        client_name: Имя
+        client_sex: Пол
+        client_birthday: Дата рождения
+        client_country: Страна
+        client_city: Город
+        client_mail: Почта
+        client_last_visit: Время последнего посещения
+        client_rating: Рейтинг
+      worksheet:
+        client_id: Идентификатор клиента
+        description_client: Описание клиента
+        hobbies: Перечнь увлечений
+        pernicious_habits: Перечнь вредных привычек
+        accommodation_type: Тип проживания
+        purpose_acquaintance: Цели знакомств
+      payment:
+        client_id: Идентификатор клиента
+        service_type: Тип услуги
+        price: Стоимость
+        payment_time: Время оплаты
+        validity_service: Срок действия услуги
+    errors:
+      models:
+        person:
+          attributes:
+            snils:
+              check_sum: имеет неправильную контрольную сумму
+
           

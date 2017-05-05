@@ -1,0 +1,39 @@
+%h1= t('app.payments.index')
+%table.table.table-hover.table-striped.center
+  %caption
+  %thead
+    %tr
+      %th= Payment.human_attribute_name(:client_id)
+      %th= Payment.human_attribute_name(:service_type)
+      %th= Payment.human_attribute_name(:price)
+      %th= Payment.human_attribute_name(:payment_time)
+      %th= Payment.human_attribute_name(:validity_service)
+      %th.p50
+      %th.p50
+      %th.p50
+
+  %tbody
+    - @payments.each do |payment|
+      %tr
+        %td= payment.client_id
+        %td= payment.service_type
+        %td= payment.price
+        %td= payment.payment_time
+        %td= payment.validity_service
+
+        %td.right          
+          = link_to payment, class: 'btn btn-warning' do
+            = fa_icon :eye
+            = t('buttons.show')
+          = link_to edit_payment_path(payment), class: 'btn btn-info' do
+            = fa_icon :edit
+            = t('buttons.edit')
+          = link_to payment, :method => :delete, 
+          :data => { :confirm => t('buttons.confirm.payment') }, 
+          class: 'btn btn-danger' do
+            = fa_icon :times
+            = t('buttons.destroy')
+
+%br
+
+= link_to t('app.payments.new-button'), new_payment_path

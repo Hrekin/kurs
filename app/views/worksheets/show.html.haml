@@ -1,0 +1,26 @@
+%p#notice= notice
+
+
+
+%dl
+  %bt= Worksheet.human_attribute_name(:client_id)
+  %dd= @worksheet.client_id
+%dl
+  %bt= Worksheet.human_attribute_name(:description_client)
+  %dd= @worksheet.description_client
+%dl
+  %bt= Worksheet.human_attribute_name(:hobbies)
+  %dd= @worksheet.hobbies
+%dl
+  %bt= Worksheet.human_attribute_name(:pernicious_habits)
+  %dd= @worksheet.pernicious_habits
+%dl
+  %bt= Worksheet.human_attribute_name(:accommodation_type)
+  %dd= @worksheet.accommodation_type
+%dl
+  %bt= Worksheet.human_attribute_name(:purpose_acquaintance)
+  %dd= @worksheet.purpose_acquaintance
+
+= link_to t('app.worksheets.edit'), edit_worksheet_path(@worksheet)
+\|
+= link_to  t('helpers.submit.back'), worksheets_path

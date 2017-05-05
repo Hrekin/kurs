@@ -1,0 +1,25 @@
+= form_for @payment do |f|
+  - if @payment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@payment.errors.count, "error")} prohibited this payment from being saved:"
+      %ul
+        - @payment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :client_id
+    = f.text_field :client_id
+  .field
+    = f.label :service_type
+    = f.select :service_type, select_service_type, {include_blank: true}
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :payment_time
+    = f.datetime_select :payment_time
+  .field
+    = f.label :validity_service
+    = f.number_field :validity_service
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

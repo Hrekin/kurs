@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501085108) do
+ActiveRecord::Schema.define(version: 20170504160744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "client_login",      null: false
+    t.string   "client_password",   null: false
+    t.string   "client_name",       null: false
+    t.string   "client_sex",        null: false
+    t.date     "client_birthday",   null: false
+    t.string   "client_country",    null: false
+    t.string   "client_city",       null: false
+    t.string   "client_mail",       null: false
+    t.datetime "client_last_visit", null: false
+    t.integer  "client_rating",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "clients", ["client_mail"], name: "index_clients_on_client_mail", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -31,6 +48,24 @@ ActiveRecord::Schema.define(version: 20170501085108) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "client_id"
+    t.string   "service_type",     null: false
+    t.float    "price",            null: false
+    t.datetime "payment_time",     null: false
+    t.integer  "validity_service", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "payments", ["client_id"], name: "index_payments_on_client_id", using: :btree
+
+  create_table "qqqs", force: :cascade do |t|
+    t.string   "qq"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "role_users", force: :cascade do |t|
     t.integer  "role_id",    null: false
@@ -96,6 +131,21 @@ ActiveRecord::Schema.define(version: 20170501085108) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  create_table "worksheets", force: :cascade do |t|
+    t.integer  "client_id"
+    t.string   "description_client",   null: false
+    t.string   "hobbies",              null: false
+    t.string   "pernicious_habits",    null: false
+    t.string   "accommodation_type",   null: false
+    t.string   "purpose_acquaintance", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "worksheets", ["client_id"], name: "index_worksheets_on_client_id", unique: true, using: :btree
+
+  add_foreign_key "payments", "clients"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"
+  add_foreign_key "worksheets", "clients"
 end

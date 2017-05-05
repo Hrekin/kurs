@@ -1,0 +1,39 @@
+
+
+%p#notice= notice
+
+%dl
+  %bt=  Client.human_attribute_name(:client_login)
+  %dd= @client.client_login
+%dl
+  %bt=  Client.human_attribute_name(:client_password)
+  %dd= @client.client_password
+%dl
+  %bt=  Client.human_attribute_name(:client_name)
+  %dd= @client.client_name
+%dl
+  %bt=  Client.human_attribute_name(:client_sex)
+  %dd= @client.client_sex
+%dl
+  %bt=  Client.human_attribute_name(:client_birthday)
+  %dd= @client.client_birthday
+%dl
+  %bt=  Client.human_attribute_name(:client_country)
+  %dd= @client.client_country
+%dl
+  %bt=  Client.human_attribute_name(:client_city)
+  %dd= @client.client_city
+%dl
+  %bt=  Client.human_attribute_name(:client_mail)
+  %dd= @client.client_mail
+%dl
+  %bt=  Client.human_attribute_name(:client_last_visit)
+  %dd= @client.client_last_visit
+%dl
+  %bt=  Client.human_attribute_name(:client_rating)
+  %dd= @client.client_rating
+
+
+= link_to   t('app.clients.edit'),  edit_client_path(@client)
+\|
+= link_to t('helpers.submit.back'), clients_path
