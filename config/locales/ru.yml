@@ -54,6 +54,9 @@ ru:
       payment: Действительно удалить оплату?
     new: 
       user: Новый пользователь
+      client: Новый Клиент
+      worksheet: Новая Анкета
+      payment: Новая Оплата услуг
       role: Новая роль
   headers:
     users:
@@ -103,6 +106,7 @@ ru:
         client_mail: Почта
         client_last_visit: Время последнего посещения
         client_rating: Рейтинг
+        user_id: Пользователь
       worksheet:
         client_id: Идентификатор клиента
         description_client: Описание клиента

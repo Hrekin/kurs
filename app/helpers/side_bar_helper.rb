@@ -2,9 +2,21 @@ module SideBarHelper
   def side_bar_items(ru)
     result = []
     result << {
-      :name => 'Сслыка без детей',
-      :icon => 'list',
-      :controller => :welcome, 
+      :name => 'Клиенты',
+      :icon => 'users',
+      :controller => :clients, 
+      :action => :index
+    }
+    result <<{
+      :name => 'Оплата Услуг',
+      :icon => 'ruble',
+      :controller => :payments, 
+      :action => :index
+    }
+    result <<{
+      :name => 'Анкеты',
+      :icon => 'list-alt',
+      :controller => :worksheets, 
       :action => :index
     }
     result << {

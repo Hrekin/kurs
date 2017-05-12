@@ -1,7 +1,10 @@
 %h1= t('app.clients.index')
 
 %table.table.table-hover.table-striped.center
-  %caption
+  %caption{:align => "bottom"}
+    = link_to new_client_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.client')
   %thead
     %tr
       %th= Client.human_attribute_name(:client_login)
@@ -14,6 +17,7 @@
       %th= Client.human_attribute_name(:client_mail)
       %th= Client.human_attribute_name(:client_last_visit)
       %th= Client.human_attribute_name(:client_rating)
+      %th= Client.human_attribute_name(:user_id)
       %th.p50
       %th.p50
       %th.p50
@@ -30,21 +34,26 @@
         %td= client.client_mail
         %td= client.client_last_visit
         %td= client.client_rating
+        %td= client.user_id
         -#%td= link_to t('app.clients.show'), client
         -#%td= link_to t('app.clients.edit'), edit_client_path(client)
         -#%td= link_to t('app.clients.destroy'), client, :method => :delete, :data => { :confirm => t('helpers.sure') }
-        %td.right          
-          = link_to client, class: 'btn btn-warning' do
-            = fa_icon :eye
-            = t('buttons.show')
-          = link_to edit_client_path(client), class: 'btn btn-info' do
-            = fa_icon :edit
-            = t('buttons.edit')
-          = link_to client, :method => :delete, 
-          :data => { :confirm => t('buttons.confirm.client') }, 
-          class: 'btn btn-danger' do
-            = fa_icon :times
-            = t('buttons.destroy')
+
+        %td.right    
+          %div.btn-group-vertical       
+            = link_to client, class: 'btn btn-warning' do
+              = fa_icon :eye
+              = t('buttons.show')
+            = link_to edit_client_path(client), class: 'btn btn-info' do
+              = fa_icon :edit
+              = t('buttons.edit')
+            = link_to client, :method => :delete, 
+            :data => { :confirm => t('buttons.confirm.client') }, 
+            class: 'btn btn-danger' do
+              = fa_icon :trash
+              = t('buttons.destroy')
+
+        
 %br
 
-= link_to t('app.clients.new-button'), new_client_path
+-#= link_to t('app.clients.new-button'), new_client_path

@@ -32,7 +32,9 @@
 %dl
   %bt=  Client.human_attribute_name(:client_rating)
   %dd= @client.client_rating
-
+%dl
+  %bt=  Client.human_attribute_name(:user_id)
+  %dd= @client.user_id
 
 = link_to   t('app.clients.edit'),  edit_client_path(@client)
 \|

@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
             if: Proc.new { |u| u.new_record? or !u.password.blank? }
 
   has_many :role_users  
+  has_one :client
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504160744) do
+ActiveRecord::Schema.define(version: 20170510154703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20170504160744) do
     t.integer  "client_rating",     null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "user_id"
   end
 
   add_index "clients", ["client_mail"], name: "index_clients_on_client_mail", unique: true, using: :btree
+  add_index "clients", ["user_id"], name: "index_clients_on_user_id", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -60,12 +62,6 @@ ActiveRecord::Schema.define(version: 20170504160744) do
   end
 
   add_index "payments", ["client_id"], name: "index_payments_on_client_id", using: :btree
-
-  create_table "qqqs", force: :cascade do |t|
-    t.string   "qq"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "role_users", force: :cascade do |t|
     t.integer  "role_id",    null: false
@@ -144,6 +140,7 @@ ActiveRecord::Schema.define(version: 20170504160744) do
 
   add_index "worksheets", ["client_id"], name: "index_worksheets_on_client_id", unique: true, using: :btree
 
+  add_foreign_key "clients", "users"
   add_foreign_key "payments", "clients"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"

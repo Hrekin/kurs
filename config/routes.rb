@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :payments
   resources :worksheets
   resources :clients
-  resources :qqqs
   resources :role_users
   resources :roles
   resources :password_resets
