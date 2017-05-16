@@ -1,4 +1,12 @@
-%h1= t('app.payments.index')
+=breadcrumb_tag do
+  %li
+    Сайт Знакомств
+  %li.active
+    = t('headers.payments.index')
+
+    
+.page-header
+  %h1= t('app.payments.index')
 %table.table.table-hover.table-striped.center
   %caption{:align => "bottom"}
     = link_to  new_payment_path, class: 'btn btn-success' do

@@ -15,6 +15,7 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
+
   end
 
   # GET /payments/1/edit
@@ -25,7 +26,10 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
-
+    @payment.client.client_last_visit = Time.now
+    @payment.client.client_rating = Client.last.client_rating.to_i + 1
+    @payment.client.user_id = User.find_by_email("#{@current_user.email}").id
+    #raise "#{payment_params}"
     respond_to do |format|
       if @payment.save
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
@@ -66,9 +70,12 @@ class PaymentsController < ApplicationController
     def set_payment
       @payment = Payment.find(params[:id])
     end
-
+    def check_ctr_auth()
+      return true if (action_name.to_sym == :index or action_name.to_sym == :show or action_name.to_sym == :new or action_name.to_sym == :edit or action_name.to_sym == :create or action_name.to_sym == :destroyor or action_name.to_sym == :update)
+      return @current_role_user.present?
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:client_id, :service_type, :price, :payment_time, :validity_service)
+      params.require(:payment).permit(:client_id, :service_type, :price, :payment_time, :validity_service, client_attributes: [:id, :_destroy, :client_login, :client_password, :client_name, :client_sex, :client_birthday, :client_country, :client_city, :client_mail])
     end
 end

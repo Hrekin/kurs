@@ -1,9 +1,19 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li
+    Сайт знакомств
+  %li.active
+    = t('app.payments.show')
+  %li
+    = link_to 'Оплата услуг', payments_path
+
+    
+.page-header
+  %h1= t('app.payments.show')
 
 
 %dl
   %bt= Payment.human_attribute_name(:client_id)
-  %dd= @payment.client_id
+  %dd= @payment.client.client_name
 %dl
   %bt= Payment.human_attribute_name(:service_type)
   %dd= @payment.service_type
@@ -16,7 +26,3 @@
 %dl
   %bt= Payment.human_attribute_name(:validity_service)
   %dd= @payment.validity_service
-
-= link_to t('app.payments.edit'), edit_payment_path(@payment)
-\|
-= link_to  t('helpers.submit.back'), payments_path

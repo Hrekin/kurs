@@ -25,7 +25,6 @@ class WorksheetsController < ApplicationController
   # POST /worksheets.json
   def create
     @worksheet = Worksheet.new(worksheet_params)
-
     respond_to do |format|
       if @worksheet.save
         format.html { redirect_to @worksheet, notice: 'Worksheet was successfully created.' }
@@ -66,9 +65,12 @@ class WorksheetsController < ApplicationController
     def set_worksheet
       @worksheet = Worksheet.find(params[:id])
     end
-
+    def check_ctr_auth()
+      return true if (action_name.to_sym == :index or action_name.to_sym == :show or action_name.to_sym == :new or action_name.to_sym == :edit or action_name.to_sym == :create or action_name.to_sym == :destroyor or action_name.to_sym == :update)
+      return @current_role_user.present?
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def worksheet_params
-      params.require(:worksheet).permit(:client_id, :description_client, :hobbies, :pernicious_habits, :accommodation_type, :purpose_acquaintance)
+      params.require(:worksheet).permit(:client_id, :description_client, :hobbies, :pernicious_habits, :accommodation_type, :purpose_acquaintance, clients_attributes: [:id, :_destroy, :client_login, :client_password, :client_name, :client_sex, :client_birthday, :client_country, :client_city, :client_mail, :client_last_visit, :client_rating, :user_id])
     end
 end

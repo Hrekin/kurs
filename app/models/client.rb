@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
-  has_many :payments
-  has_one :worksheet
+  has_many :payments, inverse_of: :client
+  has_one :worksheet, inverse_of: :client
   belongs_to :user
   validates :client_login, presence: true
   validates :client_password, presence: true

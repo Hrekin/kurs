@@ -1,28 +1,40 @@
 = form_for @worksheet do |f|
-  - if @worksheet.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@worksheet.errors.count, "error")} prohibited this worksheet from being saved:"
-      %ul
-        - @worksheet.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :client_id
-    = f.text_field :client_id
-  .field
-    = f.label :description_client
-    = f.text_field :description_client
-  .field
-    = f.label :hobbies
-    = f.text_field :hobbies
-  .field
-    = f.label :pernicious_habits
-    = f.select :pernicious_habits, select_pernicious_habits
-  .field
-    = f.label :accommodation_type
-    = f.select :accommodation_type, select_accommodation_type
-  .field
-    = f.label :purpose_acquaintance
-    = f.select :purpose_acquaintance, select_purpose_acquaintance
-  .form-actions
-    = f.submit nil, class: 'btn btn-primary'
+  = error_messages_for @worksheet
+  .row
+    .col-md-6
+      .form-group
+        = f.label :client_id
+        = f.select :client_id, options_for_select(client_option), {}, class: 'form-control'
+        = f.error_messages_for :client_id
+    .col-md-6
+      .form-group
+        = f.label :description_client
+        = f.text_field :description_client, class: 'form-control'
+        = f.error_messages_for :description_client
+    .col-md-6
+      .form-group
+        = f.label :hobbies
+        = f.text_field :hobbies, class: 'form-control'
+        = f.error_messages_for :hobbies
+    .col-md-6
+      .form-group
+        = f.label :pernicious_habits
+        = f.select :pernicious_habits, select_pernicious_habits, {} ,{ class: "form-control"}
+        = f.error_messages_for :pernicious_habits
+    .col-md-6
+      .form-group
+        = f.label :accommodation_type
+        = f.select :accommodation_type, select_accommodation_type, {}, class: 'form-control'
+        = f.error_messages_for :accommodation_type
+    .col-md-6
+      .form-group
+        = f.label :purpose_acquaintance
+        = f.select :purpose_acquaintance, select_purpose_acquaintance, {}, {  class: "form-control"}
+        = f.error_messages_for :purpose_acquaintance
+  .row.bottom20
+    .col-md-12
+  - if !@worksheet.client
+    - @worksheet.build_client
+  = f.fields_for (:client) do |client|
+    = client.hidden_field(:id)
+    = render('clients/one_client_form', client: client)

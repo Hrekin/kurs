@@ -1,7 +1,13 @@
-%h1= t('app.worksheets.edit')
+=breadcrumb_tag do
+  %li
+    Сайт знакомств
+  %li.active
+    = t('headers.worksheets.edit')
+  %li
+    = link_to(@worksheet.client.client_name, @worksheet)
+  %li
+    = link_to 'Анкеты', worksheets_path
+.page-header
+  %h1= t('app.worksheets.edit')
 
 = render 'form'
-
-= link_to t('app.worksheets.show'), @worksheet
-\|
-= link_to t('helpers.submit.back'), worksheets_path

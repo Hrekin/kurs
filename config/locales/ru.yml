@@ -63,6 +63,18 @@ ru:
       edit: Редактирование пользователя
       new: Новый пользователь
       index: Список пользователей
+    clients:
+      edit: Редактирование клиента
+      new: Новый клиент 
+      index: Список клиентов
+    payments:
+      edit: Редактирование оплаты услуги
+      new: Новая оплата услуги
+      index: Список оплаты услуг
+    worksheets:
+      edit: Редактирование анкеты
+      new: Новая анкета
+      index: Список анкет
     roles:
       index: Список возможных ролей пользователей
       edit: Редактирование роли
@@ -91,7 +103,7 @@ ru:
         activation_token_expires_at: Дата прекращения действия токена активации
         last_login_at: Время последнего входа в систему
         role_users: Роли
-      role:
+      role: 
         name: Обозначение
         info: Краткое название
         full_info: Описание
@@ -108,14 +120,14 @@ ru:
         client_rating: Рейтинг
         user_id: Пользователь
       worksheet:
-        client_id: Идентификатор клиента
+        client_id: Имя клиента
         description_client: Описание клиента
         hobbies: Перечнь увлечений
         pernicious_habits: Перечнь вредных привычек
         accommodation_type: Тип проживания
         purpose_acquaintance: Цели знакомств
       payment:
-        client_id: Идентификатор клиента
+        client_id: Имя клиента
         service_type: Тип услуги
         price: Стоимость
         payment_time: Время оплаты
@@ -127,4 +139,14 @@ ru:
             snils:
               check_sum: имеет неправильную контрольную сумму
 
+      # nested_start
+      role_user: &role_users
+      # nested_finish
+        role: Роль
+        role_id: Роль
+        data: Параметры
+      # nested_start
+      user/role_users:
+        <<: *role_users
+      # nested_finish
           

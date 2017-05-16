@@ -1,10 +1,18 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li
+    Сайт знакомств
+  %li.active
+    = t('app.worksheets.show')
+  %li
+    = link_to 'Анкеты', worksheets_path
+.page-header
+  %h1= t('app.worksheets.show')
 
 
 
 %dl
   %bt= Worksheet.human_attribute_name(:client_id)
-  %dd= @worksheet.client_id
+  %dd= @worksheet.client.client_name
 %dl
   %bt= Worksheet.human_attribute_name(:description_client)
   %dd= @worksheet.description_client
@@ -21,6 +29,4 @@
   %bt= Worksheet.human_attribute_name(:purpose_acquaintance)
   %dd= @worksheet.purpose_acquaintance
 
-= link_to t('app.worksheets.edit'), edit_worksheet_path(@worksheet)
-\|
-= link_to  t('helpers.submit.back'), worksheets_path
+

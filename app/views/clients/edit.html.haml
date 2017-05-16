@@ -1,6 +1,13 @@
-%h1= t('app.clients.edit')
-= render 'form'
+=breadcrumb_tag do
+  %li
+    Сайт знакомств
+  %li.active
+    = t('headers.clients.edit')
+  %li
+    = link_to(@client.client_mail, @client)
+  %li
+    = link_to 'Клиенты', clients_path
+.page-header
+  %h1= t('app.clients.edit')
 
-= link_to   t('app.clients.show'), @client
-\|
-= link_to t('helpers.submit.back'), clients_path
+= render 'form'

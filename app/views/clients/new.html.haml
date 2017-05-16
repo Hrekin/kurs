@@ -1,5 +1,16 @@
-%h1= t('app.clients.new')
+
+- if @current_user.present?
+  =breadcrumb_tag do
+    %li
+      Сайт знакомств
+    %li.active
+      = t('headers.clients.new')
+    %li
+      = link_to 'Клиенты', clients_path
+
+    
+.page-header
+  %h1= t('app.clients.new')
 
 = render 'form'
 
-= link_to t('helpers.submit.back'), clients_path

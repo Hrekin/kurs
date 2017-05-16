@@ -1,13 +1,16 @@
 
+=breadcrumb_tag do
+  %li
+    Сайт знакомств
+  %li.active
+    = @client.client_mail
+  %li
+    = link_to 'Клиенты', clients_path
 
-%p#notice= notice
+    
+%h1= @client.client_mail
 
-%dl
-  %bt=  Client.human_attribute_name(:client_login)
-  %dd= @client.client_login
-%dl
-  %bt=  Client.human_attribute_name(:client_password)
-  %dd= @client.client_password
+
 %dl
   %bt=  Client.human_attribute_name(:client_name)
   %dd= @client.client_name
@@ -32,10 +35,3 @@
 %dl
   %bt=  Client.human_attribute_name(:client_rating)
   %dd= @client.client_rating
-%dl
-  %bt=  Client.human_attribute_name(:user_id)
-  %dd= @client.user_id
-
-= link_to   t('app.clients.edit'),  edit_client_path(@client)
-\|
-= link_to t('helpers.submit.back'), clients_path

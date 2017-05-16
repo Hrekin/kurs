@@ -1,4 +1,12 @@
-%h1= t('app.clients.index')
+=breadcrumb_tag do
+  %li
+    Сайт Знакомств
+  %li.active
+    = t('headers.clients.index')
+
+.page-header
+  %h1= t('app.clients.index')
+
 
 %table.table.table-hover.table-striped.center
   %caption{:align => "bottom"}
@@ -7,8 +15,6 @@
       = t('buttons.new.client')
   %thead
     %tr
-      %th= Client.human_attribute_name(:client_login)
-      %th= Client.human_attribute_name(:client_password)
       %th= Client.human_attribute_name(:client_name)
       %th= Client.human_attribute_name(:client_sex)
       %th= Client.human_attribute_name(:client_birthday)
@@ -17,15 +23,12 @@
       %th= Client.human_attribute_name(:client_mail)
       %th= Client.human_attribute_name(:client_last_visit)
       %th= Client.human_attribute_name(:client_rating)
-      %th= Client.human_attribute_name(:user_id)
       %th.p50
       %th.p50
       %th.p50
   %tbody
     - @clients.each do |client|
       %tr
-        %td= client.client_login
-        %td= client.client_password
         %td= client.client_name
         %td= client.client_sex
         %td= client.client_birthday
@@ -34,7 +37,6 @@
         %td= client.client_mail
         %td= client.client_last_visit
         %td= client.client_rating
-        %td= client.user_id
         -#%td= link_to t('app.clients.show'), client
         -#%td= link_to t('app.clients.edit'), edit_client_path(client)
         -#%td= link_to t('app.clients.destroy'), client, :method => :delete, :data => { :confirm => t('helpers.sure') }
