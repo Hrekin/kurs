@@ -6,7 +6,7 @@
     .col-md-6
       .form-group
         = f.label :service_type
-        = f.select :service_type, select_service_type, class: 'form-control'
+        = f.select :service_type, select_service_type, {},  class: 'form-control'
         = f.error_messages_for(:service_type)
     .col-md-6
       .form-group
@@ -18,6 +18,7 @@
         = f.label :payment_time
         = f.datetime_select :payment_time, class: 'form-control'
         = f.error_messages_for(:payment_time)
+        
     .col-md-6
       .form-group
         = f.label :validity_service
@@ -25,19 +26,18 @@
         = f.error_messages_for(:validity_service)
 
 
-    - if @payment.new_record? and @payment.errors.empty?
+
+    - if @payment.new_record?
       .col-md-6
         .form-group
           = f.label :client_id
-          = f.select :client_id, options_for_select(client_option), {:include_blank => 'Выбрать Клиента...'}, {class: 'form-control'}
+          = f.select :client_id, options_for_select(client_option),
+            {:include_blank => 'Выбрать клиента...'}, {class: 'form-control'}
           = f.error_messages_for(:client_id)
-      .row
-        = link_to_add_client(f)
+      .row.bottom20
+        .col-md-12
+          = link_to_add_client(f, f.object)
   .row
-    = f.fields_for(:client) do |fr|
-      -# Скрытое поле - id связи роль-пользователь. Иначе все связи будут
-      -# новыми
-      = fr.hidden_field(:id)
-      -# Чтобы не повторять код, выделяем его часть в отдельный файл
-      = render('clients/one_client_form', fr: fr)
-
+    = f.fields_for(:client) do |client|
+      = client.hidden_field(:id)
+      = render('clients/one_client_form', client: client) 

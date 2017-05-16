@@ -1,6 +1,7 @@
 
 -# nested_start
-.col-md-6
+.col-md-12
+
    %div{class: 'panel panel-' + 'success' }
       .panel-heading
          Клиент
@@ -10,48 +11,47 @@
          .row
             .col-md-6
                .form-group
-                  = fr.label :client_login
-                  = fr.text_field :client_login, class: 'form-control'
-                  = fr.error_messages_for(:client_login)
+                  = client.label :client_login
+                  = client.text_field :client_login, class: 'form-control'
+                  = client.error_messages_for(:client_login)
             .col-md-6
                .form-group
-                  = fr.label :client_password
-                  = fr.text_field :client_password, class: 'form-control'
-                  = fr.error_messages_for(:client_password)
+                  = client.label :client_password
+                  = client.text_field :client_password, class: 'form-control'
+                  = client.error_messages_for(:client_password)
             .col-md-6
                .form-group
-                  = fr.label :client_name
-                  = fr.text_field :client_name, class: 'form-control'
-                  = fr.error_messages_for(:client_name)
+                  = client.label :client_name
+                  = client.text_field :client_name, class: 'form-control'
+                  = client.error_messages_for(:client_name)
             .col-md-6
                .form-group
-                  = fr.label :client_sex
-                  = fr.select :client_sex, options_for_select(['м', 'ж']), class: ' form-control'
-                  = fr.error_messages_for(:client_sex)
+                  = client.label :client_sex
+                  = client.select :client_sex, options_for_select(['м', 'ж']), class: ' form-control'
+                  = client.error_messages_for(:client_sex)
             .col-md-6
                .form-group
-                  = fr.label :client_birthday
-                  .input-group.date.datepickert
-                     = fr.text_field(:client_birthday, value: lnil(fr.object.client_birthday),
+                  = client.label :client_birthday
+                  .input-group.date.datepicker
+                     = client.text_field(:client_birthday, value: lnil(client.object.client_birthday),
                      class: 'form-control')
                   %span.input-group-addon
                      %span.glyphicon.glyphicon-calendar
-                  = fr.error_messages_for(:client_birthday)
+                  = client.error_messages_for(:client_birthday)
             .col-md-6
                .form-group
-                  = fr.label :client_country
-                  = fr.text_field :client_country, class: 'form-control'
-                  = fr.error_messages_for(:client_country)
+                  = client.label :client_country
+                  = client.text_field :client_country, class: 'form-control'
+                  = client.error_messages_for(:client_country)
             .col-md-6
                .form-group
-                  = fr.label :client_city
-                  = fr.text_field :client_city, class: 'form-control'
-                  = fr.error_messages_for(:client_city)
+                  = client.label :client_city
+                  = client.text_field :client_city, class: 'form-control'
+                  = client.error_messages_for(:client_city)
             .col-md-6
                .form-group
-                  = fr.label :client_mail
-                  = fr.text_field :client_mail, class: 'form-control'
-                  = fr.error_messages_for(:client_mail)
+                  = client.label :client_mail
+                  = client.text_field :client_mail, class: 'form-control'
+                  = client.error_messages_for(:client_mail)
                   
 -# nested_finish
-

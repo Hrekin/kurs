@@ -42,7 +42,7 @@ gem 'paper_trail'
 gem 'paperclip'
 gem 'sorcery'
 gem 'puma'
-
+gem 'bootstrap-timepicker-rails-addon', '~> 0.5.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

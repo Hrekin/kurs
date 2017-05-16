@@ -4,20 +4,33 @@ module ClientsHelper
     
   end
   # nested_start  
-  def link_to_add_client(form)
+  def link_to_add_client2(form)
     # Создаём новый объект. Аналог build в ранних примерах
-    new_object = Client.new(client_last_visit: Time.now, client_rating: (Client.last.client_rating.to_i + 1) , user_id: User.find_by_email("#{@current_user.email}").id)
+    new_object = Client.new()
     
     # Нам нужна nested-форма. В момент создания ссылки её ещё нет. Создадим её
     # Все role_users в форме имеют свой номер 
     # Мы его пока заменям на фразу new_ru
     fields = form.fields_for(:client, new_object, 
-      :child_index => 'new_client') do |fr|
-      render('clients/one_client_form', fr: fr)
+      :child_index => 'new_client') do |client|
+      render('clients/one_client_form', client: client)
     end
-
   end
-
-  # nested_finish
+    def link_to_add_client(form, user)
+    # Создаём новый объект. Аналог build в ранних примерах
+    new_object = Client.new()
+    # Нам нужна nested-форма. В момент создания ссылки её ещё нет. Создадим её
+    # Все role_users в форме имеют свой номер 
+    # Мы его пока заменям на фразу new_ru
+    fields = form.fields_for(:client, new_object, 
+      :child_index => 'new_client') do |client|
+      render('clients/one_client_form', client: client)
+    end
+    # Ссылка будет обрабатываться javascript-ом поэтому адрес фиктивный
+    link_to(?#, class: 'btn btn-info', 
+        id: 'add_client_link', data: {content: "#{fields}"}) do 
+      fa_icon("plus") + " Новый клиент" 
+    end
+  end
 end
 

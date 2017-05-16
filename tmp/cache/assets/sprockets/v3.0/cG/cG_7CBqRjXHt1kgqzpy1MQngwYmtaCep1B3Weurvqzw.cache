@@ -1,0 +1,27 @@
+I"Ñ(function() {
+  var ru_readycl;
+
+  this.add_new_rucl = function() {
+    return $('#add_client_link').on('click', function() {
+      var content, new_id, panel, regexp;
+      new_id = new Date().getTime();
+      regexp = new RegExp("new_client", "g");
+      content = $(this).attr('data-content');
+      content = content.replace(regexp, new_id);
+      $(this).parent().parent().after(content);
+      panel = $(this).parent().parent().parent().find('.panel-success').first();
+      window.datepicker_activation_by_item(panel);
+      return false;
+    });
+  };
+
+  ru_readycl = function() {
+    return window.add_new_rucl();
+  };
+
+  $(document).on('page:load', ru_readycl);
+
+  $(document).ready(ru_readycl);
+
+}).call(this);
+:ET

@@ -1,11 +1,8 @@
 = form_for @worksheet do |f|
   = error_messages_for @worksheet
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
   .row
-    .col-md-6
-      .form-group
-        = f.label :client_id
-        = f.select :client_id, options_for_select(client_option), {}, class: 'form-control'
-        = f.error_messages_for :client_id
     .col-md-6
       .form-group
         = f.label :description_client
@@ -31,10 +28,10 @@
         = f.label :purpose_acquaintance
         = f.select :purpose_acquaintance, select_purpose_acquaintance, {}, {  class: "form-control"}
         = f.error_messages_for :purpose_acquaintance
+
   .row.bottom20
     .col-md-12
-  - if !@worksheet.client
-    - @worksheet.build_client
-  = f.fields_for (:client) do |client|
+      -#= link_to_add_client(f)
+  = f.fields_for(:client) do |client|
     = client.hidden_field(:id)
     = render('clients/one_client_form', client: client)
