@@ -16,9 +16,12 @@
     .col-md-6
       .form-group
         = f.label :payment_time
-        = f.datetime_select :payment_time, class: 'form-control'
+        .input-group.date.datepickert
+          = f.text_field(:payment_time, value: lnilT(f.object.payment_time),
+          class: 'form-control')
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
         = f.error_messages_for(:payment_time)
-        
     .col-md-6
       .form-group
         = f.label :validity_service

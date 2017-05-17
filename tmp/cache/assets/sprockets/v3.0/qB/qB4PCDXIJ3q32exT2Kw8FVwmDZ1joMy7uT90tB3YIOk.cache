@@ -1,0 +1,38 @@
+I"¤(function() {
+  var ru_readycl;
+
+  this.add_new_rucl = function() {
+    return $('#add_client_link').on('click', function() {
+      var content, new_id, panel, regexp;
+      $(this).hide();
+      new_id = new Date().getTime();
+      regexp = new RegExp("new_client", "g");
+      content = $(this).attr('data-content');
+      content = content.replace(regexp, new_id);
+      $(this).parent().parent().after(content);
+      panel = $(this).parent().parent().parent().find('.panel-success').first();
+      window.datepicker_activation_by_item(panel);
+      return false;
+    });
+  };
+
+  this.selpick = function() {
+    return $('.selectpicker').selectpicker(function() {
+      return {
+        style: 'btn-info',
+        size: 4
+      };
+    });
+  };
+
+  ru_readycl = function() {
+    window.add_new_rucl();
+    return window.selpick();
+  };
+
+  $(document).on('page:load', ru_readycl);
+
+  $(document).ready(ru_readycl);
+
+}).call(this);
+:ET

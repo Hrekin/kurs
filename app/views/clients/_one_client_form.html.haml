@@ -27,7 +27,7 @@
             .col-md-6
                .form-group
                   = client.label :client_sex
-                  = client.select :client_sex, options_for_select(['м', 'ж']), class: ' form-control'
+                  = client.select :client_sex, options_for_select(['м', 'ж']), {}, class: ' form-control '
                   = client.error_messages_for(:client_sex)
             .col-md-6
                .form-group
@@ -35,8 +35,8 @@
                   .input-group.date.datepicker
                      = client.text_field(:client_birthday, value: lnil(client.object.client_birthday),
                      class: 'form-control')
-                  %span.input-group-addon
-                     %span.glyphicon.glyphicon-calendar
+                     %span.input-group-addon
+                        %span.glyphicon.glyphicon-calendar
                   = client.error_messages_for(:client_birthday)
             .col-md-6
                .form-group

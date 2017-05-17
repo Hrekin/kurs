@@ -1,12 +1,6 @@
 module SideBarHelper
   def side_bar_items(ru)
     result = []
-    result << {
-      :name => 'Клиенты',
-      :icon => 'users',
-      :controller => :clients, 
-      :action => :index
-    }
     result <<{
       :name => 'Оплата Услуг',
       :icon => 'ruble',
@@ -34,18 +28,6 @@ module SideBarHelper
        :controller => :roles, :action => :index,
        :icon => 'align-center',
        :class => 'long'},
-    ]} 
-    result << {
-      :name => 'Заголовок ссылок',
-      :icon => 'search-plus',
-      :children => [
-      {:name => 'Ссылка ребёнок',
-       :controller => :welcome, :action => :index,
-       :icon => 'binoculars'},
-      {:name => 'Ссылка ребёнок',
-       :controller => :welcome, :action => :index,
-       :icon => 'search',
-       :class => 'long'}
     ]} 
     result
   end

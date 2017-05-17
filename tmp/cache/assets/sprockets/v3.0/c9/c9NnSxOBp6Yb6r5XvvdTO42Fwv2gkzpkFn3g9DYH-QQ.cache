@@ -1,0 +1,39 @@
+I"(function() {
+  var ru_readycl;
+
+  this.add_new_rucl = function() {
+    return $('#add_client_link').on('click', function() {
+      var content, new_id, panel, regexp;
+      $(this).hide();
+      new_id = new Date().getTime();
+      regexp = new RegExp("new_client", "g");
+      content = $(this).attr('data-content');
+      content = content.replace(regexp, new_id);
+      $(this).parent().parent().after(content);
+      panel = $(this).parent().parent().parent().find('.panel-success').first();
+      window.datepicker_activation_by_item(panel);
+      return false;
+    });
+  };
+
+  ru_readycl = function() {
+    return window.add_new_rucl();
+  };
+
+  $(document).on('page:load', ru_readycl);
+
+  $(document).ready(ru_readycl);
+
+  $(document).ready(function() {
+    $('.btn-select').each(function(e) {
+      var value;
+      value = $(this).find('ul li.selected').html();
+      if (value !== void 0) {
+        $(this).find('.btn-select-input').val(value);
+        $(this).find('.btn-select-value').html(value);
+      }
+    });
+  });
+
+}).call(this);
+:ET
