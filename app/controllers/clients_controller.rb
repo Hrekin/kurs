@@ -1,6 +1,14 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  def client_search
+    #raise params['search'].inspect
+    if params.has_key?('search')
+      @clients = Client.search(params['search'])   
+    else
+      @clients = []
+    end 
+    params['search']||={}
+  end
   # GET /clients
   # GET /clients.json
   def index

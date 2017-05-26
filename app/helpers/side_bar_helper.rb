@@ -13,6 +13,12 @@ module SideBarHelper
       :controller => :worksheets, 
       :action => :index
     }
+    result <<{
+      :name => 'Поиск',
+      :icon => 'search',
+      :controller => :clients, 
+      :action => :client_search
+    }
     result << {
       :name => 'Администрирование',
       :icon => 'users',
