@@ -25,12 +25,7 @@ class WorksheetsController < ApplicationController
   # POST /worksheets
   # POST /worksheets.json
   def create
-    params[:worksheet][:pernicious_habits].delete("")
-    str = ""
-    params[:worksheet][:pernicious_habits].map { |e|  (e != params[:worksheet][:pernicious_habits][-1]) ? str += e + ", " : str += e }
-    #raise params.inspect
     @worksheet = Worksheet.new(worksheet_params)
-    @worksheet.pernicious_habits = str
     @worksheet.client.client_last_visit = Time.now
     @worksheet.client.client_rating = (Client.last.client_rating.to_i + 1)
     @worksheet.client.user_id = User.find_by_email("#{@current_user.email}").id
@@ -48,12 +43,7 @@ class WorksheetsController < ApplicationController
   # PATCH/PUT /worksheets/1
   # PATCH/PUT /worksheets/1.json
   def update
-    params[:worksheet][:pernicious_habits].delete("")
-    str = ""
-    params[:worksheet][:pernicious_habits].map { |e|  (e != params[:worksheet][:pernicious_habits][-1]) ? str += e + ", " : str += e }
-    #raise str.inspect
     respond_to do |format|
-      @worksheet.pernicious_habits = str
       if @worksheet.update(worksheet_params)
         format.html { redirect_to @worksheet, notice: 'Worksheet was successfully updated.' }
         format.json { render :show, status: :ok, location: @worksheet }

@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
   resources :payments
   resources :worksheets
-  resources :clients do
-    collection do
-      get :client_search
-    end
-  end
+  resources :clients
   resources :role_users
   resources :roles
   resources :password_resets

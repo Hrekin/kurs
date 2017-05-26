@@ -1,60 +1,59 @@
--#=breadcrumb_tag do
--#  %li
--#    Сайт Знакомств
--#  %li.active
--#    = t('headers.clients.index')
+=breadcrumb_tag do
+  %li
+    Сайт Знакомств
+  %li.active
+    = t('headers.clients.index')
 
 .page-header
   %h1= t('app.clients.index')
 
 
-.table-responsive
-  %table.table.table-hover.table-striped.table-condensed
-    -#%caption{:align => "bottom"}
-    -#  = link_to new_client_path, class: 'btn btn-success' do
-    -#    = fa_icon :plus
-    -#    = t('buttons.new.client')
-    %thead
+%table.table.table-hover.table-striped.center
+  %caption{:align => "bottom"}
+    = link_to new_client_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.client')
+  %thead
+    %tr
+      %th= Client.human_attribute_name(:client_name)
+      %th= Client.human_attribute_name(:client_sex)
+      %th= Client.human_attribute_name(:client_birthday)
+      %th= Client.human_attribute_name(:client_country)
+      %th= Client.human_attribute_name(:client_city)
+      %th= Client.human_attribute_name(:client_mail)
+      %th= Client.human_attribute_name(:client_last_visit)
+      %th= Client.human_attribute_name(:client_rating)
+      %th.p50
+      %th.p50
+      %th.p50
+  %tbody
+    - @clients.each do |client|
       %tr
-        %th= Client.human_attribute_name(:client_name)
-        %th= Client.human_attribute_name(:client_sex)
-        %th= Client.human_attribute_name(:client_birthday)
-        %th= Client.human_attribute_name(:client_country)
-        %th= Client.human_attribute_name(:client_city)
-        %th= Client.human_attribute_name(:client_mail)
-        %th= Client.human_attribute_name(:client_last_visit)
-        %th= Client.human_attribute_name(:client_rating)
-        %th.p50
-        %th.p50
-        %th.p50
-    %tbody
-      - @clients.each do |client|
-        %tr
-          %td= client.client_name
-          %td= client.client_sex
-          %td= client.client_birthday
-          %td= client.client_country
-          %td= client.client_city
-          %td= client.client_mail
-          %td= client.client_last_visit
-          %td= client.client_rating
+        %td= client.client_name
+        %td= client.client_sex
+        %td= client.client_birthday
+        %td= client.client_country
+        %td= client.client_city
+        %td= client.client_mail
+        %td= client.client_last_visit
+        %td= client.client_rating
         -#%td= link_to t('app.clients.show'), client
         -#%td= link_to t('app.clients.edit'), edit_client_path(client)
         -#%td= link_to t('app.clients.destroy'), client, :method => :delete, :data => { :confirm => t('helpers.sure') }
 
-          -#%td.right    
-          -#  %div.btn-group-vertical       
-          -#    = link_to client, class: 'btn btn-warning' do
-          -#      = fa_icon :eye
-          -#      = t('buttons.show')
-          -#    = link_to edit_client_path(client), class: 'btn btn-info' do
-          -#      = fa_icon :edit
-          -#      = t('buttons.edit')
-          -#    = link_to client, :method => :delete, 
-          -#    :data => { :confirm => t('buttons.confirm.client') }, 
-          -#    class: 'btn btn-danger' do
-          -#      = fa_icon :trash
-          -#      = t('buttons.destroy')
+        %td.right    
+          %div.btn-group-vertical       
+            = link_to client, class: 'btn btn-warning' do
+              = fa_icon :eye
+              = t('buttons.show')
+            = link_to edit_client_path(client), class: 'btn btn-info' do
+              = fa_icon :edit
+              = t('buttons.edit')
+            = link_to client, :method => :delete, 
+            :data => { :confirm => t('buttons.confirm.client') }, 
+            class: 'btn btn-danger' do
+              = fa_icon :trash
+              = t('buttons.destroy')
 
         
 %br
