@@ -26,17 +26,17 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
-    @payment.client.client_last_visit = Time.now
-    r = Client.last.client_rating.to_i + 1
-    u = User.find_by_email("#{@current_user.email}").id
-    if @payment.client.user_id.nil? and @payment.client.client_rating.nil?
-      @payment.client.client_rating = r
-      @payment.client.user_id = u      
-    end
+    #@payment.client.client_last_visit = Time.now
+    #r = Client.last.client_rating.to_i + 1
+    #u = User.find_by_email("#{@current_user.email}").id
+    #if @payment.client.user_id.nil? and @payment.client.client_rating.nil?
+    #  @payment.client.client_rating = r
+    #  @payment.client.user_id = u
+    #end
     #raise "#{@payment.inspect}"
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
+        format.html { redirect_to @payment, notice: 'Оплата услуг была успешна создана.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class PaymentsController < ApplicationController
   def update
     respond_to do |format|
       if @payment.update(payment_params)
-        format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
+        format.html { redirect_to @payment, notice: 'Оплата услуг была успешна обновлена.' }
         format.json { render :show, status: :ok, location: @payment }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class PaymentsController < ApplicationController
   def destroy
     @payment.destroy
     respond_to do |format|
-      format.html { redirect_to payments_url, notice: 'Payment was successfully destroyed.' }
+      format.html { redirect_to payments_url, notice: 'Оплата услуг была успешна удалена.' }
       format.json { head :no_content }
     end
   end
@@ -80,6 +80,6 @@ class PaymentsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:client_id, :service_type, :price, :payment_time, :validity_service, client_attributes: [:id, :_destroy, :client_login, :client_password, :client_name, :client_sex, :client_birthday, :client_country, :client_city, :client_mail, :client_last_visit, :client_rating, :user_id])
+      params.require(:payment).permit(:client_id, :service_type, :price, :payment_time, :validity_service, client_attributes: [:id, :_destroy, :client_name, :client_sex, :client_country, :client_city, :client_rating, :user_id])
     end
 end

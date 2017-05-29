@@ -11,33 +11,14 @@
          .row
             .col-md-6
                .form-group
-                  = client.label :client_login
-                  = client.text_field :client_login, class: 'form-control'
-                  = client.error_messages_for(:client_login)
-            .col-md-6
-               .form-group
-                  = client.label :client_password
-                  = client.text_field :client_password, class: 'form-control'
-                  = client.error_messages_for(:client_password)
-            .col-md-6
-               .form-group
                   = client.label :client_name
                   = client.text_field :client_name, class: 'form-control'
                   = client.error_messages_for(:client_name)
             .col-md-6
                .form-group
                   = client.label :client_sex
-                  = client.select :client_sex, options_for_select(['м', 'ж']), {}, class: ' form-control '
+                  = client.select :client_sex, options_for_select(['м', 'ж'], @worksheet.client.client_sex), {}, class: ' form-control '
                   = client.error_messages_for(:client_sex)
-            .col-md-6
-               .form-group
-                  = client.label :client_birthday
-                  .input-group.date.datepicker
-                     = client.text_field(:client_birthday, value: lnil(client.object.client_birthday),
-                     class: 'form-control')
-                     %span.input-group-addon
-                        %span.glyphicon.glyphicon-calendar
-                  = client.error_messages_for(:client_birthday)
             .col-md-6
                .form-group
                   = client.label :client_country
@@ -48,10 +29,5 @@
                   = client.label :client_city
                   = client.text_field :client_city, class: 'form-control'
                   = client.error_messages_for(:client_city)
-            .col-md-6
-               .form-group
-                  = client.label :client_mail
-                  = client.text_field :client_mail, class: 'form-control'
-                  = client.error_messages_for(:client_mail)
-                  
+
 -# nested_finish

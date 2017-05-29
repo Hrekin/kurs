@@ -1,9 +1,9 @@
 class WelcomeController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
   skip_before_action :check_app_auth
-  
+
   def index
-  end 
+  end
 
   def new
     @user = User.new
@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
 
   def create
     if @user = login(params[:email], params[:password], params[:remember])
-      redirect_back_or_to(root_path, notice: 'Вход выполнен')
+      redirect_back_or_to(new_worksheet_path, notice: 'Вход выполнен')
     else
       flash[:danger] = "Неверный #{User.human_attribute_name(:email).mb_chars.downcase} или
 #{User.human_attribute_name(:password).mb_chars.downcase}"
@@ -28,5 +28,5 @@ class WelcomeController < ApplicationController
     @current_user_object = current_user
     @current_user_login = @current_user_object.email
     @current_role_user = RoleUser.where(id: params['bad_user_role']).first
-  end  
+  end
 end

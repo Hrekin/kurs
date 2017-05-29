@@ -21,7 +21,7 @@
   %dd= @worksheet.hobbies
 %dl
   %bt= Worksheet.human_attribute_name(:pernicious_habits)
-  %dd= @worksheet.pernicious_habits
+  %dd= @worksheet.pernicious_habits.delete("[,],\"")
 %dl
   %bt= Worksheet.human_attribute_name(:accommodation_type)
   %dd= @worksheet.accommodation_type

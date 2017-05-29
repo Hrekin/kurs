@@ -15,9 +15,9 @@
     .col-lg-6
       = label_tag Client.human_attribute_name(:client_sex)
       .input-group
-        = radio_button_tag 'search[client_sexm]', params['search']['client_sexm']
+        = check_box_tag 'search[client_sexm]', params['search']['client_sexm'], ((params.has_key?(:search) && params[:search].has_key?(:client_sexm)) ? true : false )
         М
-        = radio_button_tag 'search[client_sexf]', params['search']['client_sexf']
+        = check_box_tag 'search[client_sexf]', params['search']['client_sexf'], ((params.has_key?(:search) && params[:search].has_key?(:client_sexf)) ? true : false )
         Ж
     .col-md-6
       .form-group
@@ -28,63 +28,51 @@
     .col-md-6
       .form-group
         .input-group.input-group-md
-          = label_tag Client.human_attribute_name(:client_birthday) + ' с'
-          .input-group.date.datepicker
-            = text_field_tag 'search[client_birthdays]', params['search']['client_birthdays'], :class => "form-control"
-            %span.input-group-addon
-              %span.glyphicon.glyphicon-calendar
-    .col-md-6
-      .form-group
-        .input-group.input-group-md
         = label_tag Worksheet.human_attribute_name(:pernicious_habits)
-        = select_tag 'search[pernicious_habits]', select_pernicious_habits, {class: 'form-control', multiple: true}
-  .row
-    .col-md-6
-      .form-group
-        .input-group.input-group-md
-          = label_tag Client.human_attribute_name(:client_birthday) + ' по'
-          .input-group.date.datepicker
-            = text_field_tag 'search[client_birthdaypo]', params['search']['client_birthdaypo'], :class => "form-control"
-            %span.input-group-addon
-              %span.glyphicon.glyphicon-calendar
+        = select_tag 'search[pernicious_habits]', select_pernicious_habits1, {class: 'form-control', multiple: true}
     .col-md-6
       .form-group
         .input-group.input-group-md
         = label_tag Worksheet.human_attribute_name(:accommodation_type)
-        = select_tag 'search[accommodation_type]', select_accommodation_type, {class: 'form-control', include_blank: true}
+        = select_tag 'search[accommodation_type]', select_accommodation_type1, {class: 'form-control', include_blank: true}
   .row
     .col-md-6
       .form-group
         .input-group.input-group-md
           = label_tag Client.human_attribute_name(:client_country)
-          = text_field_tag 'search[client_country]', params['search']['client_country'], :class => "form-control" 
+          = text_field_tag 'search[client_country]', params['search']['client_country'], :class => "form-control"
     .col-md-6
       .form-group
         .input-group.input-group-md
         = label_tag Worksheet.human_attribute_name(:purpose_acquaintance)
-        = select_tag 'search[purpose_acquaintance]', select_purpose_acquaintance, {class: 'form-control', include_blank: true}
+        = select_tag 'search[purpose_acquaintance]', select_purpose_acquaintance1, {class: 'form-control', include_blank: true}
   .row
     .col-md-6
       .form-group
         .input-group.input-group-md
           = label_tag Client.human_attribute_name(:client_city)
-          = text_field_tag 'search[client_city]', params['search']['client_city'], :class => "form-control" 
+          = text_field_tag 'search[client_city]', params['search']['client_city'], :class => "form-control"
     .col-md-6
       .form-group
         .input-group.input-group-md
           = label_tag Payment.human_attribute_name(:service_type)
-          = select_tag 'search[service_type]', select_service_type, {class: 'form-control', include_blank: true}
+          = select_tag 'search[service_type]', select_service_type1, {class: 'form-control', include_blank: true}
   .row
     .col-md-6
       .form-group
         .input-group.input-group-md
           = label_tag Client.human_attribute_name(:client_mail)
-          = text_field_tag 'search[client_mail]', params['search']['client_mail'], :class => "form-control" 
+          = text_field_tag 'search[client_mail]', params['search']['client_mail'], :class => "form-control"
     .col-md-6
       .form-group
         .input-group.input-group-md
           = label_tag Payment.human_attribute_name(:price)
-          = text_field_tag 'search[price]', params['search']['price'], :class => "form-control" 
+          = text_field_tag 'search[price]', params['search']['price'], :class => "form-control"
+    .col-md-6
+      .form-group
+        .input-group.input-group-md
+          = label_tag Payment.human_attribute_name(:validity_service)
+          = number_field_tag 'search[validity_service]', params['search']['validity_service'], min: 0,  :class => "form-control"
   .row
     .col-md-6
       .form-group
@@ -107,19 +95,13 @@
           = text_field_tag 'search[payment_timepo]', params['search']['payment_timepo'], :class => "form-control"
           %span.input-group-addon
             %span.glyphicon.glyphicon-calendar
-    .col-md-6
-      .form-group
-        .input-group.input-group-md
-          = label_tag Payment.human_attribute_name(:validity_service)
-          = number_field_tag 'search[validity_service]', params['search']['validity_service'], min: 0,  :class => "form-control"
+
   .row
     .form-actions
       .col-md-2
         = submit_tag ('Искать'), :class => "btn btn-info"
- 
 
 - if @clients.present?
   = render template: "clients/index"
 - else
   %p No results!
-

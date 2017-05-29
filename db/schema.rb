@@ -17,22 +17,16 @@ ActiveRecord::Schema.define(version: 20170510154703) do
   enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
-    t.string   "client_login",      null: false
-    t.string   "client_password",   null: false
-    t.string   "client_name",       null: false
-    t.string   "client_sex",        null: false
-    t.date     "client_birthday",   null: false
-    t.string   "client_country",    null: false
-    t.string   "client_city",       null: false
-    t.string   "client_mail",       null: false
-    t.datetime "client_last_visit", null: false
-    t.integer  "client_rating",     null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "user_id"
+    t.string   "client_name",    null: false
+    t.string   "client_sex",     null: false
+    t.string   "client_country", null: false
+    t.string   "client_city",    null: false
+    t.integer  "client_rating",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id",        null: false
   end
 
-  add_index "clients", ["client_mail"], name: "index_clients_on_client_mail", unique: true, using: :btree
   add_index "clients", ["user_id"], name: "index_clients_on_user_id", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -52,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170510154703) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "client_id"
+    t.integer  "client_id",        null: false
     t.string   "service_type",     null: false
     t.float    "price",            null: false
     t.datetime "payment_time",     null: false
@@ -128,7 +122,7 @@ ActiveRecord::Schema.define(version: 20170510154703) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "worksheets", force: :cascade do |t|
-    t.integer  "client_id"
+    t.integer  "client_id",            null: false
     t.string   "description_client",   null: false
     t.string   "hobbies",              null: false
     t.string   "pernicious_habits",    null: false

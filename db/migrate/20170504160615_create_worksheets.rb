@@ -1,7 +1,7 @@
 class CreateWorksheets < ActiveRecord::Migration
   def change
     create_table :worksheets do |t|
-      t.references :client, foreign_key: true
+      t.references :client, foreign_key: true, null: false
       t.index :client_id, unique: true
       t.string :description_client, null: false
       t.string :hobbies, null: false

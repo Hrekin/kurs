@@ -16,47 +16,39 @@
     -#    = t('buttons.new.client')
     %thead
       %tr
-        %th= Client.human_attribute_name(:client_name)
-        %th= Client.human_attribute_name(:client_sex)
-        %th= Client.human_attribute_name(:client_birthday)
-        %th= Client.human_attribute_name(:client_country)
-        %th= Client.human_attribute_name(:client_city)
-        %th= Client.human_attribute_name(:client_mail)
-        %th= Client.human_attribute_name(:client_last_visit)
-        %th= Client.human_attribute_name(:client_rating)
-        %th.p50
-        %th.p50
-        %th.p50
+        %td= Client.human_attribute_name(:client_name)
+        %td= Client.human_attribute_name(:client_sex)
+        %td= Client.human_attribute_name(:client_country)
+        %td= Client.human_attribute_name(:client_city)
+        %td= Client.human_attribute_name(:client_rating)
+        %th
     %tbody
       - @clients.each do |client|
         %tr
-          %td= client.client_name
-          %td= client.client_sex
-          %td= client.client_birthday
-          %td= client.client_country
-          %td= client.client_city
-          %td= client.client_mail
-          %td= client.client_last_visit
-          %td= client.client_rating
+          %td{:data => Client.human_attribute_name(:client_name)}= client.client_name
+          %td{:data => Client.human_attribute_name(:client_sex)}= client.client_sex
+          %td{:data => Client.human_attribute_name(:client_country)}= client.client_country
+          %td{:data => Client.human_attribute_name(:client_city)}= client.client_city
+          %td{:data => Client.human_attribute_name(:client_rating)}= client.client_rating
         -#%td= link_to t('app.clients.show'), client
         -#%td= link_to t('app.clients.edit'), edit_client_path(client)
         -#%td= link_to t('app.clients.destroy'), client, :method => :delete, :data => { :confirm => t('helpers.sure') }
 
-          -#%td.right    
-          -#  %div.btn-group-vertical       
+          -#%td.right
+          -#  %div.btn-group-vertical
           -#    = link_to client, class: 'btn btn-warning' do
           -#      = fa_icon :eye
           -#      = t('buttons.show')
           -#    = link_to edit_client_path(client), class: 'btn btn-info' do
           -#      = fa_icon :edit
           -#      = t('buttons.edit')
-          -#    = link_to client, :method => :delete, 
-          -#    :data => { :confirm => t('buttons.confirm.client') }, 
+          -#    = link_to client, :method => :delete,
+          -#    :data => { :confirm => t('buttons.confirm.client') },
           -#    class: 'btn btn-danger' do
           -#      = fa_icon :trash
           -#      = t('buttons.destroy')
 
-        
+
 %br
 
 -#= link_to t('app.clients.new-button'), new_client_path

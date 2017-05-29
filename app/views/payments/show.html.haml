@@ -22,7 +22,7 @@
   %dd= @payment.price
 %dl
   %bt= Payment.human_attribute_name(:payment_time)
-  %dd= @payment.payment_time
+  %dd= @payment.payment_time.to_time.strftime('%m-%e-%y %H:%M')
 %dl
   %bt= Payment.human_attribute_name(:validity_service)
   %dd= @payment.validity_service

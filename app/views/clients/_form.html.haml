@@ -7,14 +7,6 @@
           %li= msg
 
   .field
-    = f.label :client_login 
-    = f.text_field :client_login
-    = f.error_messages_for(:client_birthday)
-  .field
-    = f.label :client_password
-    = f.text_field :client_password
-    = f.error_messages_for(:client_password)
-  .field
     = f.label :client_name
     = f.text_field :client_name
     = f.error_messages_for(:client_name)
@@ -23,17 +15,6 @@
     = f.select :client_sex, options_for_select(['м', 'ж'])
     = f.error_messages_for(:client_sex)
 
-  .col-md-6
-    = f.label :client_birthday
-    .input-group.date.datepicker
-      = f.text_field(:client_birthday, value: lnil(f.object.client_birthday),
-      class: 'form-control')
-      %span.input-group-addon
-        %span.glyphicon.glyphicon-calendar
-    = f.error_messages_for(:client_birthday)
-  %br
-  %br
-  %br
   .field
     = f.label :client_country
     = f.text_field :client_country
@@ -42,10 +23,5 @@
     = f.label :client_city
     = f.text_field :client_city
     = f.error_messages_for(:client_city)
-  .field
-    = f.label :client_mail
-    = f.text_field :client_mail, placeholder: "#{@current_user.email}"
-    = f.error_messages_for(:client_mail)
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
-

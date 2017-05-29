@@ -19,28 +19,25 @@
         %th= Payment.human_attribute_name(:price)
         %th= Payment.human_attribute_name(:payment_time)
         %th= Payment.human_attribute_name(:validity_service)
-        %th.p50
-        %th.p50
-        %th.p50
-  
+        %th
+
     %tbody
       - @payments.each do |payment|
         %tr
-          %td= payment.client.client_name
-          %td= payment.service_type
-          %td= payment.price
-          %td= payment.payment_time
-          %td= payment.validity_service
-  
-          %td.right.btn-group-vertical                  
+          %td{:data => Payment.human_attribute_name(:client_id)}= payment.client.client_name
+          %td{:data => Payment.human_attribute_name(:service_type)}= payment.service_type
+          %td{:data => Payment.human_attribute_name(:price)}= payment.price
+          %td{:data => Payment.human_attribute_name(:payment_time)}= payment.payment_time.to_time.strftime('%m-%e-%y %H:%M')
+          %td{:data => Payment.human_attribute_name(:validity_service)}= payment.validity_service
+          %td.right.btn-group-vertical
             = link_to payment, class: 'btn btn-warning' do
               = fa_icon :eye
               = t('buttons.show')
             = link_to edit_payment_path(payment), class: 'btn btn-info' do
               = fa_icon :edit
               = t('buttons.edit')
-            = link_to payment, :method => :delete, 
-            :data => { :confirm => t('buttons.confirm.payment') }, 
+            = link_to payment, :method => :delete,
+            :data => { :confirm => t('buttons.confirm.payment') },
             class: 'btn btn-danger' do
               = fa_icon :trash
               = t('buttons.destroy')

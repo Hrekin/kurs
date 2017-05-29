@@ -1,0 +1,33 @@
+
+-# nested_start
+.col-md-12
+
+   %div{class: 'panel panel-' + 'success' }
+      .panel-heading
+         Клиент
+         %span.toright
+         .clearfix
+      .panel-body
+         .row
+            .col-md-6
+               .form-group
+                  = client.label :client_name
+                  = client.text_field :client_name, class: 'form-control'
+                  = client.error_messages_for(:client_name)
+            .col-md-6
+               .form-group
+                  = client.label :client_sex
+                  = client.select :client_sex, options_for_select(['м', 'ж'], @payment.client.client_sex), {}, class: ' form-control '
+                  = client.error_messages_for(:client_sex)
+            .col-md-6
+               .form-group
+                  = client.label :client_country
+                  = client.text_field :client_country, class: 'form-control'
+                  = client.error_messages_for(:client_country)
+            .col-md-6
+               .form-group
+                  = client.label :client_city
+                  = client.text_field :client_city, class: 'form-control'
+                  = client.error_messages_for(:client_city)
+
+-# nested_finish

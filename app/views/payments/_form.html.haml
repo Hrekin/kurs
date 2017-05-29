@@ -37,10 +37,7 @@
           = f.select :client_id, options_for_select(client_option),
             {:include_blank => 'Выбрать клиента...'}, {class: 'form-control'}
           = f.error_messages_for(:client_id)
-      .row.bottom20
-        .col-md-12
-          = link_to_add_client(f, f.object)
   .row
     = f.fields_for(:client) do |client|
       = client.hidden_field(:id)
-      = render('clients/one_client_form', client: client) 
+      = render('clients/one_client_form2', client: client)

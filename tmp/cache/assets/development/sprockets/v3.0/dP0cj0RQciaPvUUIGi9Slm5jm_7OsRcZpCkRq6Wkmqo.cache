@@ -1,0 +1,15 @@
+I"Ý(function() {
+  var tm_ready;
+
+  this.add_time = function() {
+    return $('.clockpicker').clockpicker();
+  };
+
+  tm_ready = function() {
+    return window.add_time();
+  };
+
+  $(document).ready(tm_ready);
+
+}).call(this);
+:ET

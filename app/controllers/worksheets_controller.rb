@@ -25,18 +25,18 @@ class WorksheetsController < ApplicationController
   # POST /worksheets
   # POST /worksheets.json
   def create
-    params[:worksheet][:pernicious_habits].delete("")
-    str = ""
-    params[:worksheet][:pernicious_habits].map { |e|  (e != params[:worksheet][:pernicious_habits][-1]) ? str += e + ", " : str += e }
+    #params[:worksheet][:pernicious_habits].delete("")
+    #str = ""
+    #params[:worksheet][:pernicious_habits].map { |e|  (e != params[:worksheet][:pernicious_habits][-1]) ? str += e + ", " : str += e }
     #raise params.inspect
     @worksheet = Worksheet.new(worksheet_params)
-    @worksheet.pernicious_habits = str
-    @worksheet.client.client_last_visit = Time.now
+    #@worksheet.pernicious_habits = str
+    #@worksheet.client.client_last_visit = Time.now
     @worksheet.client.client_rating = (Client.last.client_rating.to_i + 1)
     @worksheet.client.user_id = User.find_by_email("#{@current_user.email}").id
     respond_to do |format|
       if @worksheet.save
-        format.html { redirect_to @worksheet, notice: 'Worksheet was successfully created.' }
+        format.html { redirect_to @worksheet, notice: 'Анкета была успешно создана.' }
         format.json { render :show, status: :created, location: @worksheet }
       else
         format.html { render :new }
@@ -48,14 +48,14 @@ class WorksheetsController < ApplicationController
   # PATCH/PUT /worksheets/1
   # PATCH/PUT /worksheets/1.json
   def update
-    params[:worksheet][:pernicious_habits].delete("")
-    str = ""
-    params[:worksheet][:pernicious_habits].map { |e|  (e != params[:worksheet][:pernicious_habits][-1]) ? str += e + ", " : str += e }
+    #raise params[:worksheet][:pernicious_habits].inspect
+    #str = ""
+    #params[:worksheet][:pernicious_habits].map { |e|  (e != params[:worksheet][:pernicious_habits][-1]) ? str += e + ", " : str += e }
     #raise str.inspect
     respond_to do |format|
-      @worksheet.pernicious_habits = str
+      #@worksheet.pernicious_habits = str
       if @worksheet.update(worksheet_params)
-        format.html { redirect_to @worksheet, notice: 'Worksheet was successfully updated.' }
+        format.html { redirect_to @worksheet, notice: 'Анкета была успешно обновлена.' }
         format.json { render :show, status: :ok, location: @worksheet }
       else
         format.html { render :edit }
@@ -69,7 +69,7 @@ class WorksheetsController < ApplicationController
   def destroy
     @worksheet.destroy
     respond_to do |format|
-      format.html { redirect_to worksheets_url, notice: 'Worksheet was successfully destroyed.' }
+      format.html { redirect_to worksheets_url, notice: 'Анкета была успешно удалена.' }
       format.json { head :no_content }
     end
   end
@@ -85,6 +85,6 @@ class WorksheetsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def worksheet_params
-      params.require(:worksheet).permit(:client_id, :description_client, :hobbies, :pernicious_habits, :accommodation_type, :purpose_acquaintance, client_attributes: [:id, :_destroy, :client_login, :client_password, :client_name, :client_sex, :client_birthday, :client_country, :client_city, :client_mail, :client_last_visit, :client_rating, :user_id])
+      params.require(:worksheet).permit(:client_id, :description_client, :hobbies,  :accommodation_type, :purpose_acquaintance, client_attributes: [:id, :_destroy, :client_name, :client_sex, :client_country, :client_city, :client_rating, :user_id], pernicious_habits: [])
     end
 end

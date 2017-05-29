@@ -3,10 +3,10 @@ class ClientsController < ApplicationController
   def client_search
     #raise params['search'].inspect
     if params.has_key?('search')
-      @clients = Client.search(params['search'])   
+      @clients = Client.search(params['search'])
     else
       @clients = []
-    end 
+    end
     params['search']||={}
   end
   # GET /clients
@@ -32,12 +32,11 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
-    
+
     @client = Client.new(client_params)
     #@client.client_mail = @current_user.email
     @client.user_id = User.where(:email => @current_user.email).first.id
-    @client.client_rating = (Client.last.client_rating.to_i + 1)
-    @client.client_last_visit = Time.now
+    @client.client_rating =  0
     #raise "#{Client.last.client_rating + 1}"
     respond_to do |format|
       if @client.save
@@ -81,11 +80,11 @@ class ClientsController < ApplicationController
     end
 
     def check_ctr_auth()
-      return true if (action_name.to_sym == :index or action_name.to_sym == :show or action_name.to_sym == :new or action_name.to_sym == :edit or action_name.to_sym == :create or action_name.to_sym == :update) or (@current_role_user.try(:is_admin?))
+      return true if (action_name.to_sym == :index or action_name.to_sym == :show or action_name.to_sym == :new or action_name.to_sym == :edit or action_name.to_sym == :create or action_name.to_sym == :update or action_name.to_sym == :client_search) or (@current_role_user.try(:is_admin?))
       return @current_role_user.present?
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:client_login, :client_password, :client_name, :client_sex, :client_birthday, :client_country, :client_city, :client_mail, :client_last_visit, :client_rating, :user_id)
+      params.require(:client).permit(:client_name, :client_sex, :client_country, :client_city, :client_rating, :user_id)
     end
 end

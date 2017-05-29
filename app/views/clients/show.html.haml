@@ -3,12 +3,12 @@
   %li
     Сайт знакомств
   %li.active
-    = @client.client_mail
+    = @client.client_name
   %li
     = link_to 'Клиенты', clients_path
 
-    
-%h1= @client.client_mail
+
+%h1= @client.client_name
 
 
 %dl
@@ -17,21 +17,18 @@
 %dl
   %bt=  Client.human_attribute_name(:client_sex)
   %dd= @client.client_sex
-%dl
-  %bt=  Client.human_attribute_name(:client_birthday)
-  %dd= @client.client_birthday
+-#%dl
+  -#%bt=  Client.human_attribute_name(:client_birthday)
+  -#%dd= @client.client_birthday
 %dl
   %bt=  Client.human_attribute_name(:client_country)
   %dd= @client.client_country
 %dl
   %bt=  Client.human_attribute_name(:client_city)
   %dd= @client.client_city
-%dl
-  %bt=  Client.human_attribute_name(:client_mail)
-  %dd= @client.client_mail
-%dl
-  %bt=  Client.human_attribute_name(:client_last_visit)
-  %dd= @client.client_last_visit
+-#%dl
+  -#%bt=  Client.human_attribute_name(:client_mail)
+  -#%dd= @client.client_mail
 %dl
   %bt=  Client.human_attribute_name(:client_rating)
   %dd= @client.client_rating
