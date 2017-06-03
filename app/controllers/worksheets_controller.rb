@@ -32,6 +32,7 @@ class WorksheetsController < ApplicationController
     @worksheet = Worksheet.new(worksheet_params)
     #@worksheet.pernicious_habits = str
     #@worksheet.client.client_last_visit = Time.now
+    @worksheet.pernicious_habits = @worksheet.pernicious_habits.delete!("[, ], \"")
     @worksheet.client.client_rating = (Client.last.client_rating.to_i + 1)
     @worksheet.client.user_id = User.find_by_email("#{@current_user.email}").id
     respond_to do |format|
@@ -55,6 +56,8 @@ class WorksheetsController < ApplicationController
     respond_to do |format|
       #@worksheet.pernicious_habits = str
       if @worksheet.update(worksheet_params)
+        @worksheet.pernicious_habits = @worksheet.pernicious_habits.delete!("[,], \"")
+        #raise @worksheet.inspect
         format.html { redirect_to @worksheet, notice: 'Анкета была успешно обновлена.' }
         format.json { render :show, status: :ok, location: @worksheet }
       else

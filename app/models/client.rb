@@ -50,8 +50,11 @@ class Client < ActiveRecord::Base
       result = result.where(worksheets: {purpose_acquaintance: params['purpose_acquaintance']})
     end
     if params['pernicious_habits'].present?
-      #raise params['pernicious_habits'].class.inspect
-      result = result.where(worksheets: {pernicious_habits: params['pernicious_habits']})
+      #raise (params['pernicious_habits']).to_s.delete("[,],\"").inspect
+      #result = result.where(worksheets: {pernicious_habits.map{ |s| params['pernicious_habits']}})
+      #Topic.where("name like '?%' ", params[:name])
+      result = result.joins(:worksheet).where("worksheets.pernicious_habits like ? ", "%#{params['pernicious_habits'].first}%")
+      #result = result.joins(:worksheet).where("worksheets.pernicious_habits like ? ", params['pernicious_habits'].each{|s| "%#{s}%"})
     end
     if params['service_type'].present?
       result = result.where(payments: {service_type: params['service_type']})
